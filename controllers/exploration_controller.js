@@ -16,7 +16,18 @@ const index = (req, res) => {
     })
 }
 
+const findExplorationByBooking = (req, res) => {
+  const { id } = req.params;
+  Exploration.find({ 'bookingId': id })
+    .exec((err, exploration) => {
+      if (err) return res.status(500).send({ code: 500, message: "Something went wrong" });
+      if (!exploration) return res.status(404).send({ code: 404, message: "Theres not explorations" });
+      return res.status(200).send({ code: 200, data: exploration, message: "Request successfully" });
+    })
+}
+
 
 module.exports = {
-  index
+  index,
+  findExplorationByBooking
 }
