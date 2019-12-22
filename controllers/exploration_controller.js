@@ -27,8 +27,12 @@ const findExplorationByBooking = (req, res) => {
 }
 
 const filterByClinic = (req, res) => {
-  const { clinic, limit, page } = req.query;
-  Exploration.find({})
+  const { clinic, limit, page, medications, strict } = req.query;
+
+  let mode;
+  mode = strict === 'true' ? medications : new RegExp(medications, "i");
+
+  Exploration.find({ 'consumedMedications': mode })
     .lean()
     .limit(parseInt(limit))
     .skip(parseInt(page * limit))
