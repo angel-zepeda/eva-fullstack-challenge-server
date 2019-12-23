@@ -1,9 +1,16 @@
 const Exploration = require('../models/Exploration');
 
+/**
+ * Index function response all explorations stored in database with bookings association
+ * return json response with code, message or data
+ * STATUS CODES:
+ *  500: Request is incorrect
+ *  404: Theres not bookings stored
+ *  200: Request successfully done and information found
+ */
 const index = (req, res) => {
   const limit = req.query.limit;
   const page = req.query.page;
-
   Exploration.find({})
     .lean()
     .limit(parseInt(limit))
@@ -16,6 +23,14 @@ const index = (req, res) => {
     })
 }
 
+/**
+ * findExplorationByBooking function response explorations stored in database by bookingId
+ * return json response with code, message or data
+ * STATUS CODES:
+ *  500: Request is incorrect
+ *  404: Theres not explorations stored
+ *  200: Request successfully done and information found
+ */
 const findExplorationByBooking = (req, res) => {
   const { id } = req.params;
   Exploration.find({ 'bookingId': id })
@@ -26,9 +41,21 @@ const findExplorationByBooking = (req, res) => {
     })
 }
 
+
+/**
+ * filterByClinic function response explorations stored in database based these query params
+ * @queryparam clinic This param search exploration by clinicName
+ * @queryparam limit  This param is the limit of found results
+ * @queryparam page   Param to paginate results
+ * @queryparam medications This params search and filter consumed medications 
+ * @queryparam strict This params is LAX or STRICT mode, TRUE=strict FALSE=lax
+ * STATUS CODES:
+ *  500: Request is incorrect
+ *  404: Theres not explorations stored
+ *  200: Request successfully done and information found
+ */
 const filterByClinic = (req, res) => {
   const { clinic, limit, page, medications, strict } = req.query;
-
   let mode;
   mode = strict === 'true' ? medications : new RegExp(medications, "i");
 

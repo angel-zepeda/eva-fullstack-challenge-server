@@ -1,5 +1,13 @@
 const Booking = require('../models/Booking');
 
+/**
+ * Index function response all bookings stored in database
+ * return json response with code, message or data
+ * STATUS CODES:
+ *  500: Request is incorrect
+ *  404: Theres not bookings stored
+ *  200: Request successfully done and information found
+ */
 const index = (req, res) => {
   const limit = req.query.limit;
   const page = req.query.page;

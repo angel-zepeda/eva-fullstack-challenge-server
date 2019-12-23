@@ -1,9 +1,10 @@
-'use strict'
-
 const User = require('../models/User');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('../services/jwt');
 
+/**
+ * index function returns all users stored in database
+ */
 function index(req, res) {
   User.find({}, (err, users) => {
     if (err) return res.status(500).send({ message: "Something went wrong" });
@@ -12,6 +13,10 @@ function index(req, res) {
   }).sort('_id')
 }
 
+
+/**
+ * register function returns user registered and stored in DB
+ */
 function register(req, res) {
   const params = req.body;
   let user = new User();
