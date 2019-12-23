@@ -25,18 +25,19 @@ function register(req, res) {
   user.role = params.role;
   User.find({ email: user.email.toLowerCase() })
     .exec((err, users) => {
-      if (err) return res.status(500).send({ message: "Something went wrong" })
+      if (err) return res.send({ code: 500, message: "Something went wrong" })
       if (users && users.length >= 1) {
-        return res.status(200).send({
+        return res.send({
+          code: 404,
           message: "Email has been taken"
         })
       } else {
         bcrypt.hash(params.password, null, null, (err, hash) => {
           user.password = hash;
           user.save((err, userStore) => {
-            if (err) return res.status(500).send({ message: "Something went wrong" })
-            if (!userStore) return res.status(404).send({ message: "This user cant be saved" })
-            return res.status(200).send({ user: userStore });
+            if (err) return res.send({ code: 500, message: "Something went wrong" })
+            if (!userStore) return res.send({ code: 404, message: "This user cant be saved" })
+            return res.status(200).send({ code: 200, user: userStore });
           })
         });
       }
