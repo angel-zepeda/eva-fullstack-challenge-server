@@ -6,7 +6,7 @@ exports.ensureAuth = function (req, res, next) {
   if (!req.headers.authorization) {
     return res.status(404).send({ message: "Theres not header on request" });
   }
-  const token = req.headers.authorization.replace(/['"]+/g, '');
+  const token = req.headers.authorization.slice(6, req.headers.authorization.length).trim();
   try {
     var payload = jwt.decode(token, secret);
     if (payload.exp <= moment().unix()) {
