@@ -15,9 +15,14 @@
 
 ### Import mongo database
 ```bash
-  cd seeds
-  1) mongoimport --db=eva --collection=bookings --file=bookings.json
-  2) mongoimport --db=eva --collection=explorations --file=explorations.json
+  Unix systems (bash, zsh)
+    cd seeds
+    1) mongoimport --db=eva --collection=bookings --file=bookings.json
+    2) mongoimport --db=eva --collection=explorations --file=explorations.json
+
+  Windows (cmd) especify your own route change username and json directory
+   1) C:\Program Files\MongoDB\Server\4.2\bin>mongoimport --db=eva --collection=bookings--file=C:\Users\AngelZepeda\Documents\Dev\EVA\eva-fullstack-challenge-server\seeds\bookings.json
+   2)C:\Program Files\MongoDB\Server\4.2\bin>mongoimport --db=eva --collection=explorations--file=C:\Users\AngelZepeda\Documents\Dev\EVA\eva-fullstack-challenge-server\seeds\explorations.json
 ```
 ### Exploration routes
 
