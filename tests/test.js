@@ -3,10 +3,10 @@ var request = request("http://localhost:5000/api/v1")
 
 describe('Explorations', () => {
   describe('GET', () => {
-    it('Should return json with explorations', done => {
+    it('This test expect 404 status code cause must be present headers on request', done => {
       request.get('/explorations/?page=0&limit=10')
         .expect('Content-Type', /json/)
-        .expect(200, done);
+        .expect(404, done);
     });
   });
 });
