@@ -126,8 +126,37 @@ This folder contains a test file for some API endpoints
   $ npm i -g mocha (package for run tests)
 ```
 
+## Examples
+### Explorations index endpoint
 
+```bash
+{
+    "code": 200,
+    "data": {
+        {
+            "_id": "5dfe4ad4741e3e755d2d8b51",
+            "bookingId": {
+                "_id": "5dfd90cb0242dc49511a8580",
+                "name": "Mina Cummings",
+                "email": "mina_cummings@gmail.com",
+                "datetime": "2019-11-26T01:19:51.813Z",
+                "clinicName": "EXPLANADA"
+            },
+            "consumedMedications": []
+        }
+      }
+}
+```
 
-
-
-
+### User index endopoint 
+```bash
+[
+    {
+        "role": "user",
+        "_id": "5dfea8aed543f6474eaeca0b",
+        "email": "angel@hotmail.com",
+        "password": "$2a$10$o8DqeO4DX4liUV566Jrm6uJ4Mb5Y7Q2ZQTJq3hc4ljCHwAi2uNJoe",
+        "__v": 0
+    }
+]
+```
